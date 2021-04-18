@@ -1,0 +1,181 @@
+<!doctype html>
+<!--
+ vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
+-->
+
+<html lang="en">
+<head>
+  <!--<meta http-equiv="refresh" content="120">-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cloud Monitor</title>
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="apple-touch-icon-60x60.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="favicon-196x196.png" sizes="196x196" />
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="favicon-128.png" sizes="128x128" />
+  <meta name="application-name" content="&nbsp;"/>
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+  <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.green.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/dragtable.mod.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/filter.formatter.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/jquery.tablesorter.pager.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.blackice.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.blue.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.blue.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.bootstrap_2.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.bootstrap_3.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.bootstrap_4.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.bootstrap.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.dark.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.default.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.dropbox.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.green.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.grey.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.ice.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.jui.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.materialize.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/theme.metro-dark.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/tablesorter-master/dist/css/widget.grouping.min.css" type="text/css" media="print, projection, screen">
+  <link rel="stylesheet" href="/jquery-ui-themes-1.12.1/themes/cupertino/jquery-ui.css" type="text/css" media="print, projection, screen">
+
+  <!--  <link rel="stylesheet" href="/resources/demos/style.css" type="text/css" media="print, projection, screen"> -->
+
+  <script src="/jquery-ui-1.12.1.custom/external/jquery/jquery.js"></script>
+  <script src="/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+  <script type="text/javascript" src="/tablesorter-master/js/jquery.tablesorter.js"></script>
+
+  <!-- tablesorter widgets (optional) -->
+  <script type="text/javascript" src="/tablesorter-master/js/jquery.tablesorter.widgets.js"></script>
+  <!--  <script src="sorttable.js"></script> -->
+
+  <script src="jquery.treetable.js"></script>
+
+  <style>
+    html {
+        font-size: 13px;
+    }
+
+    body, div, table, td, th, h1 {
+        font-family: 'trebuchet ms', verdana, arial;
+    }
+  </style>
+
+  <script>
+
+{% for account in info['accounts'] %}
+  $(function(){
+    $("#{{ account }}Table").tablesorter({
+        showProcessing: true,
+
+        theme: 'blue',
+
+        dateFormat : "yyyymmdd",
+
+        // hidden filter input/selects will resize the columns, so try to minimize the change
+        widthFixed : true,
+
+        sortList: [[2,0],[3,0]],
+
+        widgets: [ 'reorder', 'zebra', 'stickyHeaders', 'filter', 'scroller' ],
+        widgetOptions: {
+                        filter_reset        : '.reset',
+            reorder_axis        : 'x', // 'x' or 'xy'
+            reorder_delay       : 300,
+            reorder_helperClass : 'tablesorter-reorder-helper',
+            reorder_helperBar   : 'tablesorter-reorder-helper-bar',
+            reorder_noReorder   : 'reorder-false',
+            reorder_blocked     : 'reorder-block-left reorder-block-end',
+            reorder_complete    : null // callback
+        }
+    })
+    .bind('filterInit filterEnd', function(event, data) {
+        // use data.filteredRows or this.config.filteredRows
+        //$('.filter-rows').html( data.filteredRows );
+        //$('.total-rows').html( data.totalRows );
+        console.log("Number of rows [" + data.filteredRows + "]");
+                document.getElementById('lblCount-{{ account }}').innerHTML = data.filteredRows;
+    });
+    });
+{% endfor %}
+
+    $(function() {
+        $("#myTabs").tabs();
+    });
+
+  </script>
+</head>
+<body>
+<h1>Cloud Monitor</h1>
+<h4>by Shantanu Gadgil</h4>
+<h2>Last Updated On: {{ info['curdate'] }}</h2>
+
+<br/>
+
+<div id="myTabs">
+  <ul>
+{% for account in info['accounts'] %}
+    <li><a href="#tabs-{{ account }}">{{ account }}</a></li>
+{% endfor -%}
+  </ul>
+
+{% for account in info['accounts'] %}
+<div id="tabs-{{ account }}">
+<label>Count: </label><label id="lblCount-{{ account }}">0</label>
+
+<table id='{{ account }}Table' class="tablesorter">
+  <thead>
+    <tr>
+{% for head in info['headers'] -%}
+{{'      '}}<th>{{ head }}</th>
+{% endfor -%}
+{{'    '}}</tr>
+  </thead>
+  <tfoot>
+    <tr>
+{% for foot in info['footers'] -%}
+{{'      '}}<th>{{ foot }}</th>
+{% endfor -%}
+    </tr>
+  </tfoot>
+  <tbody>
+{% for item in info[account]['items'] -%}
+{{'    '}}<tr>
+      <td>{{ item['InstanceId']       }}</td>
+      <td>{{ item['Name']             }}</td>
+      <td>{{ item['Region']           }}</td>
+      <td>{{ item['Status']           }}</td>
+      <td>{{ item['KeyName']          }}</td>
+      <td>{{ item['InstanceType']     }}</td>
+      <td>{{ item['ImageId']          }}</td>
+      <td>{{ item['ImageName']        }}</td>
+      <td>{{ item['LaunchTime']       }}</td>
+      <td>{{ item['PrivateIpAddress'] }}</td>
+      <td>{{ item['VpcId']            }}</td>
+      <td>{{ item['PublicIpAddress']  }}</td>
+    </tr>
+{% endfor -%}
+  </tbody>
+</table>
+</div>
+{% endfor -%}
+
+</div>
+</body>
+</html>

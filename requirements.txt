@@ -1,0 +1,7 @@
+awscli
+click
+#html
+jinja2
+python-dateutil
+pytz
+#traceback
