@@ -1,9 +1,9 @@
 
 build:
-	DOCKER_BUILDKIT=1 docker image build -t cloudmonitor:1 .
+	DOCKER_BUILDKIT=1 docker image build -t cloudmonitor:v1 .
 
 run:
-	docker run -d -v /data:/data --name cm1 cloudmonitor:1
+	docker run -d -v /data:/data --name cm1 cloudmonitor:v1
 	sleep 3
 	docker ps
 
