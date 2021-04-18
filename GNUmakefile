@@ -1,6 +1,6 @@
 
 build:
-	DOCKER_BUILDKIT=1 docker image build -t cloudmonitor:v1 .
+	DOCKER_BUILDKIT=1 docker image build --squash -t cloudmonitor:v1 .
 
 run:
 	docker run -d -v /data:/data --name cm1 cloudmonitor:v1

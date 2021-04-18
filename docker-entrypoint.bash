@@ -26,7 +26,11 @@ cd $me_dir || { echo "unable to chdir to [$me_dir] "; sleep 180; exit 1; }
 
 AWS_ACCOUNT_LIST=${AWS_ACCOUNT_LIST:-"undefined"}
 
-AWS_REGION_LIST=${AWS_REGION_LIST:-"us-west-2"}
+AWS_REGION_LIST=${AWS_REGION_LIST:-"all"}
+
+if [[ "$AWS_REGION_LIST" == "all" ]]; then
+    AWS_REGION_LIST=$(aws ec2 --region us-west-2 describe-regions | jq -r '.Regions[].RegionName' | xargs)
+fi
 
 DELAY=${DELAY:-"300"}
 
