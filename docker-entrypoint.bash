@@ -4,7 +4,6 @@
 
 set -u
 set -e
-set -x
 
 exec 2>&1
 
@@ -27,17 +26,25 @@ cd $me_dir || { echo "unable to chdir to [$me_dir] "; sleep 180; exit 1; }
 
 AWS_ACCOUNT_LIST=${AWS_ACCOUNT_LIST:-"undefined"}
 
+log "AWS_ACCOUNT_LIST [$AWS_ACCOUNT_LIST]"
+
 AWS_REGION_LIST=${AWS_REGION_LIST:-"all"}
 
 if [[ "$AWS_REGION_LIST" == "all" ]]; then
     AWS_REGION_LIST=$(aws ec2 --region us-west-2 describe-regions | jq -r '.Regions[].RegionName' | xargs)
 fi
 
+log "AWS_REGION_LIST [$AWS_REGION_LIST]"
+
 DELAY=${DELAY:-"300"}
+
+log "DELAY [$DELAY]"
 
 OUTPUT_DIR="/data"
 
-tar oxmvf html.tar.xz --strip=1 -C /data
+log "OUTPUT_DIR [$OUTPUT_DIR]"
+
+tar oxmf html.tar.xz --strip=1 -C /data
 
 log_base_dir="/logs"
 
@@ -46,7 +53,6 @@ cur_date=$(date +"%F-%H-%M-%S")
 base_data_dir="${log_base_dir}/${cur_date}"
 
 ### you need to map in the file ~/.aws/config with the correct "profile" settings per account
-
 
 while (( 1 )); do
 
@@ -76,9 +82,10 @@ while (( 1 )); do
 
     python /generate_html.py --data-dir ${base_data_dir} --outfile ${OUTPUT_DIR}/index.html
 
+    log "Sleeping [$DELAY] ..."
     sleep $DELAY
-
 done
 
-log "you should never see this message. something is wrong"
-sleep infinity
+log "ERROR: YOU SHOULD NEVER SEE THIS MESSAGE"
+sleep 10
+exit 1
