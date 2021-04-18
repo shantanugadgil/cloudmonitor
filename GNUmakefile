@@ -14,3 +14,7 @@ logs:
 
 clean:
 	docker rm -f cm1
+
+retag:
+	docker tag cloudmonitor:$(TAG) $(OTHER_IMAGE)
+	docker push $(OTHER_IMAGE)
