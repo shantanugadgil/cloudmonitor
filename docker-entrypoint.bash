@@ -4,6 +4,7 @@
 
 set -u
 set -e
+set -x
 
 exec 2>&1
 
@@ -46,6 +47,7 @@ base_data_dir="${log_base_dir}/${cur_date}"
 
 ### you need to map in the file ~/.aws/config with the correct "profile" settings per account
 
+
 while (( 1 )); do
 
     for account in ${AWS_ACCOUNT_LIST}; do
@@ -54,7 +56,7 @@ while (( 1 )); do
 
             out_dir="${base_data_dir}/${account}/${region}"
 
-            mkdir -p ${out_dir}
+            mkdir -pv ${out_dir}
 
             fname_instances="${out_dir}/instances.json"
 
