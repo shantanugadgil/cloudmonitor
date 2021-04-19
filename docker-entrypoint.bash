@@ -24,6 +24,8 @@ log "me [$me] me_dir [$me_dir]"
 
 cd $me_dir || { echo "unable to chdir to [$me_dir] "; sleep 180; exit 1; }
 
+### you need to map in the file ~/.aws/config with the correct "profile" settings per account
+
 AWS_ACCOUNT_LIST=${AWS_ACCOUNT_LIST:-"undefined"}
 
 log "AWS_ACCOUNT_LIST [$AWS_ACCOUNT_LIST]"
@@ -48,13 +50,10 @@ tar oxmf html.tar.xz --strip=1 -C /data
 
 log_base_dir="/logs"
 
-cur_date=$(date +"%F-%H-%M-%S")
-
-base_data_dir="${log_base_dir}/${cur_date}"
-
-### you need to map in the file ~/.aws/config with the correct "profile" settings per account
-
 while (( 1 )); do
+    cur_date=$(date +"%F-%H-%M-%S")
+
+    base_data_dir="${log_base_dir}/${cur_date}"
 
     for account in ${AWS_ACCOUNT_LIST}; do
 
