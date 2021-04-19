@@ -124,7 +124,7 @@ def add_to_context(context, region_dir, account, region):
     image_file = os.path.join(region_dir, 'images.json')
 
     data_instances = {}
-    log_debug("read instance data from [" + instance_file + "]")
+    log_debug("reading instance data from [" + instance_file + "]")
     try:
         with open(instance_file) as json_data:
             data_instances = json.load(json_data)
