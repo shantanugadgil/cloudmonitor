@@ -80,7 +80,7 @@ while (( 1 )); do
         done
     done
 
-    python /generate_html.py --data-dir ${base_data_dir} --outfile ${OUTPUT_DIR}/index.html
+    python /generate_html.py --data-dir ${base_data_dir} --outfile ${OUTPUT_DIR}/htdocs/index.html
 
     log "Sleeping [$DELAY] ..."
     sleep $DELAY
