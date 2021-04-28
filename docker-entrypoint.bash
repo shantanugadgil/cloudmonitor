@@ -81,6 +81,9 @@ while (( 1 )); do
 
     python /generate_html.py --data-dir ${base_data_dir} --outfile ${OUTPUT_DIR}/index.html
 
+    log "removing [${base_data_dir}]"
+    rm -rfv ${base_data_dir}
+
     log "Sleeping [$DELAY] ..."
     sleep $DELAY
 done

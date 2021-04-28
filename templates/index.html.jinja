@@ -159,6 +159,7 @@
 {{'    '}}<tr>
       <td><a href="https://console.aws.amazon.com/ec2/v2/home?region={{ item['Region'] }}#InstanceDetails:instanceId={{ item['InstanceId'] }}" target="_blank">{{ item['InstanceId'] }}</a></td>
       <td>{{ item['Name']             }}</td>
+      <td>{{ item['BlockDevices']     }}</td>
       <td>{{ item['Region']           }}</td>
       <td>{{ item['Status']           }}</td>
       <td>{{ item['KeyName']          }}</td>

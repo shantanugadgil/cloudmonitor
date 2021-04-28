@@ -140,7 +140,7 @@ def add_to_context(context, region_dir, account, region):
             data_images = json.load(json_data)
     except:
         log_error("unable to read image data from file [" + image_file + "]")
-        pass
+        return
 
 
     # create a map of ami-id -> ami-name
@@ -176,14 +176,18 @@ def add_to_context(context, region_dir, account, region):
             if 'KeyName' in instance:
                 key_name = instance['KeyName']
 
-
             tags = []
             if 'Tags' in instance:
                 tags = instance['Tags']
 
+            block_devices = []
+            for dd in instance['BlockDeviceMappings']:
+                block_devices.append(dd['DeviceName'])
+
             item = {}
             item['InstanceId']       = instance['InstanceId']
             item['Name']             = '---'
+            item['BlockDevices']     = ' '.join(block_devices)
             item['Region']           = region
             item['Status']           = status
 
@@ -228,8 +232,8 @@ def main(args):
 
     context['accounts'] = []
 
-    context['headers'] = ['InstanceId', 'Name', 'Region', 'Status', 'KeyName', 'InstanceType', 'ImageId', 'ImageName', 'LaunchTime', 'PrivateIpAddress', 'VpcId', 'PublicIpAddress']
-    context['footers'] = ['InstanceId', 'Name', 'Region', 'Status', 'KeyName', 'InstanceType', 'ImageId', 'ImageName', 'LaunchTime', 'PrivateIpAddress', 'VpcId', 'PublicIpAddress']
+    context['headers'] = ['InstanceId', 'Name', 'BlockDevices', 'Region', 'Status', 'KeyName', 'InstanceType', 'ImageId', 'ImageName', 'LaunchTime', 'PrivateIpAddress', 'VpcId', 'PublicIpAddress']
+    context['footers'] = ['InstanceId', 'Name', 'BlockDevices', 'Region', 'Status', 'KeyName', 'InstanceType', 'ImageId', 'ImageName', 'LaunchTime', 'PrivateIpAddress', 'VpcId', 'PublicIpAddress']
 
     #pprint.pprint(args.data_dir)
     curdate = os.path.basename(args.data_dir)
