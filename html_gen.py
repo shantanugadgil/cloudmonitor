@@ -187,7 +187,7 @@ def add_to_context(context, region_dir, account, region):
             item = {}
             item['InstanceId']       = instance['InstanceId']
             item['Name']             = '---'
-            item['BlockDevices']     = ' '.join(block_devices)
+            item['BlockDevices']     = ','.join(block_devices)
             item['Region']           = region
             item['Status']           = status
 
