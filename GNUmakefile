@@ -1,5 +1,6 @@
 
 TAG ?= "vLATEST"
+OTHER_IMAGE ?= "nosuchrepo/cloudmonitor"
 
 build:
 	DOCKER_BUILDKIT=1 docker image build --squash -t cloudmonitor:$(TAG) .
@@ -15,6 +16,7 @@ logs:
 clean:
 	docker rm -f cm1
 
-retag:
-	docker tag cloudmonitor:$(TAG) $(OTHER_IMAGE)
-	docker push $(OTHER_IMAGE)
+retag: build
+	# OTHER_IMAGE=private.repo.tld/cloudmonitor
+	docker tag cloudmonitor:$(TAG) $(OTHER_IMAGE):$(TAG)
+	docker push $(OTHER_IMAGE):$(TAG)
