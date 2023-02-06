@@ -68,14 +68,15 @@ while (( 1 )); do
             fname_images="${out_dir}/images.json"
 
             # parallelize the fetches
-            aws ec2 --profile $account --region $region describe-instances > ${fname_instances} &
+            aws ec2 --profile $account --region $region describe-instances > ${fname_instances}
 
-            aws ec2 --profile $account --region $region describe-images --owners self > ${fname_images} &
+            cat "${fname_instances}" | jq -r '.Reservations[].Instances[].ImageId' | sort -u | tr '\n' ' ' > ami_list.txt
 
+            aws ec2 --profile "${account}" --region "${region}" describe-images describe-images --image-ids "$(cat ami_list.txt)" > "${fname_images}"
+
+            ### aws ec2 --profile $account --region $region describe-images --owners self > ${fname_images} &
             wait
-
             sync
-
         done
     done
 
