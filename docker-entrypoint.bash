@@ -51,6 +51,8 @@ tar oxmf html.tar.xz --strip=1 -C /data
 
 log_base_dir="/logs"
 
+fname_ami_list="/tmp/ami_list.txt"
+
 while (( 1 )); do
     cur_date=$(date +"%F-%H-%M-%S")
 
@@ -71,14 +73,14 @@ while (( 1 )); do
             # parallelize the fetches
             aws ec2 --profile $account --region $region describe-instances > ${fname_instances}
 
-            cat "${fname_instances}" | jq -r '.Reservations[].Instances[].ImageId' | sort -u | tr '\n' ' ' > ami_list.txt
+            cat "${fname_instances}" | jq -r '.Reservations[].Instances[].ImageId' | sort -u | tr '\n' ' ' > ${fname_ami_list}
 
             echo '{ "Images": [] }' > "${fname_images}"
 
             ls -l "${out_dir}/"
-            ls -l ami_list.txt
+            ls -l ${fname_ami_list}
 
-            if [[ -s ami_list ]]; then
+            if [[ -s ${fname_ami_list} ]]; then
                 aws ec2 --profile "${account}" --region "${region}" describe-images --image-ids $(cat ami_list.txt) > "${fname_images}"
             fi
 
