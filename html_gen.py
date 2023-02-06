@@ -198,11 +198,11 @@ def add_to_context(context, region_dir, account, region):
             # make the 'ImageName' default to the 'ImageId'
             # this is incase the image is not "owned" by "self"
             item['ImageName']        = instance['ImageId']
-            
+
             if instance['ImageId'] in image_names:
                 item['ImageName'] = image_names[ instance['ImageId'] ]
 
-            #pprint.pprint(item['ImageName'])            
+            #pprint.pprint(item['ImageName'])
 
             item['PrivateIpAddress'] = private_ip_address
             item['VpcId']            = vpcid
@@ -280,12 +280,12 @@ args = parser.parse_args()
 '''
 #2021-04-12-14-21-21/
 # ├── production
-# │   ├── eu-central-1
+# |   ├── eu-central-1
 # │   │   ├── images.json
-# │   │   └── instances.json
-# │   └── us-west-2
-# │       ├── images.json
-# │       └── instances.json
+# │   │   └── instances.json
+# │   └── us-west-2
+# │       ├── images.json
+# │       └── instances.json
 # └── staging
 #     ├── eu-central-1
 #     │   ├── images.json
@@ -298,4 +298,3 @@ args = parser.parse_args()
 #pprint.pprint(args)
 
 main(args)
-
