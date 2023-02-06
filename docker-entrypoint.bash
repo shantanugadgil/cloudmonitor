@@ -71,9 +71,9 @@ while (( 1 )); do
             # parallelize the fetches
             aws ec2 --profile $account --region $region describe-instances > ${fname_instances}
 
-            ls -l ${out_dir}/
-
             cat "${fname_instances}" | jq -r '.Reservations[].Instances[].ImageId' | sort -u | tr '\n' ' ' > ami_list.txt
+
+            ls -l ${out_dir}/
 
             aws ec2 --profile "${account}" --region "${region}" describe-images describe-images --image-ids "$(cat ami_list.txt)" > "${fname_images}"
 
