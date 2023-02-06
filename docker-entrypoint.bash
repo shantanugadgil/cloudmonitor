@@ -4,6 +4,7 @@
 
 set -u
 set -e
+set -x
 
 exec 2>&1
 
@@ -69,6 +70,8 @@ while (( 1 )); do
 
             # parallelize the fetches
             aws ec2 --profile $account --region $region describe-instances > ${fname_instances}
+
+            ls -l ${out_dir}/
 
             cat "${fname_instances}" | jq -r '.Reservations[].Instances[].ImageId' | sort -u | tr '\n' ' ' > ami_list.txt
 
