@@ -75,12 +75,15 @@ while (( 1 )); do
 
             echo '{ "Images": [] }' > "${fname_images}"
 
+            ls -l "${out_dir}/"
+            ls -l ami_list.txt
+
             if [[ -s ami_list ]]; then
                 aws ec2 --profile "${account}" --region "${region}" describe-images --image-ids $(cat ami_list.txt) > "${fname_images}"
             fi
 
             ### aws ec2 --profile $account --region $region describe-images --owners self > ${fname_images} &
-            wait
+            #wait
             sync
         done
     done
