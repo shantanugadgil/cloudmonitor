@@ -81,7 +81,7 @@ while (( 1 )); do
             ls -l ${fname_ami_list}
 
             if [[ -s ${fname_ami_list} ]]; then
-                aws ec2 --profile "${account}" --region "${region}" describe-images --image-ids $(cat ami_list.txt) > "${fname_images}"
+                aws ec2 --profile "${account}" --region "${region}" describe-images --image-ids $(cat ${fname_ami_list}) > "${fname_images}"
             fi
 
             ### aws ec2 --profile $account --region $region describe-images --owners self > ${fname_images} &
