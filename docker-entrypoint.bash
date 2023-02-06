@@ -73,10 +73,10 @@ while (( 1 )); do
 
             cat "${fname_instances}" | jq -r '.Reservations[].Instances[].ImageId' | sort -u | tr '\n' ' ' > ami_list.txt
 
+            echo '{ "Images": [] }' > "${fname_images}"
+
             if [[ -s ami_list ]]; then
-                aws ec2 --profile "${account}" --region "${region}" describe-images describe-images --image-ids "$(cat ami_list.txt)" > "${fname_images}"
-            else
-                echo '{}' > "${fname_images}"
+                aws ec2 --profile "${account}" --region "${region}" describe-images --image-ids "$(cat ami_list.txt)" > "${fname_images}"
             fi
 
             ### aws ec2 --profile $account --region $region describe-images --owners self > ${fname_images} &
