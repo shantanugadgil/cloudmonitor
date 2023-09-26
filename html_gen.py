@@ -81,7 +81,7 @@ def log_debug(msg_str):
 
 ###############################################################################
 def exec_local_cmd (_cmd):
-    _log_info("[" + _cmd + "]")
+    log_info("[" + _cmd + "]")
     retcode = 0
     output = ''
 
@@ -165,8 +165,18 @@ def add_to_context(context, region_dir, account, region):
                 vpcid = instance['VpcId']
 
             private_ip_address = '-----'
-            if 'PrivateIpAddress' in instance:
-                private_ip_address = instance['PrivateIpAddress']
+            network_interfaces = instance['NetworkInterfaces']
+
+            if len(network_interfaces) > 0:
+                tmp = []
+
+                for ni in network_interfaces:
+                    tmp.append(ni['PrivateIpAddress'])
+
+                private_ip_address = '<br/>'.join(tmp)
+            else:
+                if 'PrivateIpAddress' in instance:
+                    private_ip_address = instance['PrivateIpAddress']
 
             public_ip_address = '-----'
             if 'PublicIpAddress' in instance:
