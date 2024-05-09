@@ -171,7 +171,8 @@ def add_to_context(context, region_dir, account, region):
                 tmp = []
 
                 for ni in network_interfaces:
-                    tmp.append(ni['PrivateIpAddress'])
+                    if 'PrivateIpAddress' in ni:
+                        tmp.append(ni['PrivateIpAddress'])
 
                 private_ip_address = '<br/>'.join(tmp)
             else:

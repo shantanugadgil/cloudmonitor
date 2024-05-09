@@ -1,6 +1,6 @@
 FROM python:3-alpine
 
-RUN apk add --update curl tzdata bash ca-certificates xz jq \
+RUN apk update && apk add curl tzdata bash ca-certificates xz jq \
   && rm -rf /var/cache/apk/*
 
 COPY requirements.txt .
